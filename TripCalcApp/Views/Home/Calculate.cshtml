@@ -1,0 +1,55 @@
+﻿@model IEnumerable<TripCalcApp.Models.Student>
+
+@{
+    ViewBag.Title = "Calculate";
+}
+
+<h2>Calculate</h2>
+
+<h4 style="color:red">@ViewBag.warningMessage</h4>
+
+@using (Html.BeginForm())
+{
+        <h4>Total Expenses per Student</h4>
+
+        <table>
+            <thead>
+                <tr>
+                    <td>Name</td>
+                    <!--<td>Last Name</td>-->
+                    <td>Total Paid Amount</td>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i=0;i<Model.Count();i++)
+                {
+                    <tr>
+                        <td>
+                            <input class="text-box single-line" data-val="true" data-val-required="The firstName field is required." id="students[@(i)]_firstName" name="students[@(i)].firstName" type="text" placeholder="Name" />
+                        </td>
+                        <!--<td>
+                            <input class="text-box single-line" data-val="true" data-val-required="The lastName field is required." id="students[@(i)]_lastName" name="students[@(i)].lastName" type="text" placeholder="Last Name" />
+                        </td>-->
+                        <td>
+                            <input class="text-box single-line" data-val="true" data-val-required="The amountPaid field is required." id="students[@(i)]_paidAmount" name="students[@(i)].paidAmount" type="text" placeholder="0.00" />
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Calculate" class="btn btn-default" />
+            </div>
+        </div>
+}
+
+        <div id="outputDiv">
+            <h4>@Html.Raw(@ViewBag.output)</h4>
+        </div>
+
+<style>
+
+
+</style>
